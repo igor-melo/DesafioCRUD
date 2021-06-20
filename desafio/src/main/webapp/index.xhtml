@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>
+	<title>Cadastro Usuario</title>
+</h:head>
+
+
+<h:body>
+
+	<h:form>
+		<p:messages autoUpdate="true" showDetail="true"></p:messages>
+		<p:fieldset legend="Manutenção Usuários">
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton value="Novo" action="#{usuarioBean.novo()}"
+						update="@form">
+						<f:actionListener binding="#{telefoneBean.novo()}" />
+					</p:commandButton>
+					<p:commandButton value="Salvar" action="#{usuarioBean.salvar()}"
+						update="@form" disabled="#{usuarioBean.buscar == true}"></p:commandButton>
+					<p:commandButton value="Buscar" action="#{usuarioBean.buscar()}"
+						update="@form"></p:commandButton>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<!-- USUARIO -->
+			<p:panelGrid columns="2" rendered="#{usuarioBean.buscar == false}">
+				<h:outputLabel value="Nome" />
+				<p:inputText value="#{usuarioBean.entidade.nome}"></p:inputText>
+
+				<h:outputLabel value="Email" />
+				<p:inputText value="#{usuarioBean.entidade.email}"></p:inputText>
+
+				<h:outputLabel value="Senha" />
+				<p:password value="#{usuarioBean.entidade.senha}" redisplay="true"></p:password>
+			</p:panelGrid>
+
+			<p:dataTable value="#{usuarioBean.entidades}" var="usuario"
+				rendered="#{usuarioBean.buscar == true}">
+				<p:column>
+					<p:commandButton value="Editar"
+						action="#{usuarioBean.editar(usuario)}" update="@form">
+						<f:actionListener binding="#{telefoneBean.novo()}" />
+					</p:commandButton>
+					<p:commandButton value="Deletar"
+						action="#{usuarioBean.deletar(usuario)}" update="@form"></p:commandButton>
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{usuario.nome}"></h:outputText>
+				</p:column>
+				<p:column headerText="Email">
+					<h:outputText value="#{usuario.email}"></h:outputText>
+				</p:column>
+				<p:column headerText="Senha">
+					<h:outputText value="#{usuario.senha}"></h:outputText>
+				</p:column>
+			</p:dataTable>
+
+			<!-- TELEFONE -->
+			<p:panelGrid columns="4" rendered="#{usuarioBean.buscar == false}">
+				<h:outputLabel value="Telefone" />
+				<p:inputText value="#{telefoneBean.entidade.ddd}"
+					redisplay="true"></p:inputText>
+				<p:inputText value="#{telefoneBean.entidade.numero}"
+					redisplay="true"></p:inputText>
+			
+				<h:selectOneMenu value="#{telefoneBean.entidade.tipo}">
+					<f:selectItem itemValue="Residencial" itemLabel="Residencial" />
+					<f:selectItem itemValue="Celular" itemLabel="Celular" />
+					<f:selectItem itemValue="Empresa" itemLabel="Empresa" />
+				</h:selectOneMenu>
+
+				<p:commandButton value="+"
+					action="#{usuarioBean.addTelefone(telefoneBean.entidade)}"
+					update="@form">
+					<f:actionListener binding="#{telefoneBean.buscar()}" />
+				</p:commandButton>
+
+			</p:panelGrid>
+
+			<p:dataTable value="#{usuarioBean.entidade.telefones}" var="telefone"
+				rendered="#{usuarioBean.buscar == false}">
+				<p:column>
+					<p:commandButton value="Deletar"
+						action="#{usuarioBean.removeTelefone(telefone)}" update="@form"></p:commandButton>
+				</p:column>
+				<p:column headerText="DDD">
+					<h:outputText value="#{telefone.ddd}"></h:outputText>
+				</p:column>
+				<p:column headerText="Telefone">
+					<h:outputText value="#{telefone.numero}"></h:outputText>
+				</p:column>
+				<p:column headerText="Tipo">
+					<h:outputText value="#{telefone.tipo}"></h:outputText>
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+	</h:form>
+</h:body>
+</html>

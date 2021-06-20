@@ -1,4 +1,4 @@
-package br.com.pitang.desafio.dao;
+package br.com.pitang.desafio.interfaces;
 
 import java.util.List;
 

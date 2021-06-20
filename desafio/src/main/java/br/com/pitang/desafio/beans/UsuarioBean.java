@@ -3,16 +3,16 @@ package br.com.pitang.desafio.beans;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import br.com.pitang.desafio.dao.UsuarioDAOJPA;
+import br.com.pitang.desafio.dao.UsuarioDAO;
 import br.com.pitang.desafio.entities.Telefone;
 import br.com.pitang.desafio.entities.Usuario;
 
 @ManagedBean
 @SessionScoped
-public class UsuarioBean extends DAOBean<Usuario, UsuarioDAOJPA>{
+public class UsuarioBean extends DAOBean<Usuario, UsuarioDAO>{
 
 	
-	private UsuarioDAOJPA usuarioDAO;
+	private UsuarioDAO usuarioDAO;
 	
 	@Override
 	public Usuario criarNovaEntidade() {
@@ -20,10 +20,10 @@ public class UsuarioBean extends DAOBean<Usuario, UsuarioDAOJPA>{
 	}
 
 	@Override
-	public UsuarioDAOJPA getDao() {
+	public UsuarioDAO getDao() {
 		
 		if(usuarioDAO == null) {
-			usuarioDAO = new UsuarioDAOJPA();
+			usuarioDAO = new UsuarioDAO();
 		}
 		return usuarioDAO;
 	}

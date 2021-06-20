@@ -24,7 +24,7 @@
 						<f:actionListener binding="#{telefoneBean.novo()}" />
 					</p:commandButton>
 					<p:commandButton value="Salvar" action="#{usuarioBean.salvar()}"
-						update="@form" disabled="#{usuarioBean.buscar == true}"></p:commandButton>
+						update="@form" disabled="#{usuarioBean.buscar == true}" ></p:commandButton>
 					<p:commandButton value="Buscar" action="#{usuarioBean.buscar()}"
 						update="@form"></p:commandButton>
 				</p:toolbarGroup>
@@ -35,7 +35,7 @@
 				<p:inputText value="#{usuarioBean.entidade.nome}"></p:inputText>
 
 				<h:outputLabel value="Email" />
-				<p:inputText value="#{usuarioBean.entidade.email}"></p:inputText>
+				<p:inputText value="#{usuarioBean.entidade.email}" ></p:inputText>
 
 				<h:outputLabel value="Senha" />
 				<p:password value="#{usuarioBean.entidade.senha}" redisplay="true"></p:password>
@@ -50,26 +50,24 @@
 					</p:commandButton>
 					<p:commandButton value="Deletar"
 						action="#{usuarioBean.deletar(usuario)}" update="@form"></p:commandButton>
+					
 				</p:column>
 				<p:column headerText="Nome">
 					<h:outputText value="#{usuario.nome}"></h:outputText>
 				</p:column>
 				<p:column headerText="Email">
-					<h:outputText value="#{usuario.email}"></h:outputText>
-				</p:column>
-				<p:column headerText="Senha">
-					<h:outputText value="#{usuario.senha}"></h:outputText>
+					<h:outputText value="#{usuario.email}" type="email"></h:outputText>
 				</p:column>
 			</p:dataTable>
 
 			<!-- TELEFONE -->
-			<p:panelGrid columns="4" rendered="#{usuarioBean.buscar == false}">
+			<p:panelGrid columns="5" rendered="#{usuarioBean.buscar == false}" >
 				<h:outputLabel value="Telefone" />
-				<p:inputText value="#{telefoneBean.entidade.ddd}"
-					redisplay="true"></p:inputText>
-				<p:inputText value="#{telefoneBean.entidade.numero}"
-					redisplay="true"></p:inputText>
-			
+				<p:inputText value="#{telefoneBean.entidade.ddd}" maxlength="3">
+					<f:convertNumber integerOnly="true"  />
+				</p:inputText>
+				<p:inputText value="#{telefoneBean.entidade.numero}"></p:inputText>
+
 				<h:selectOneMenu value="#{telefoneBean.entidade.tipo}">
 					<f:selectItem itemValue="Residencial" itemLabel="Residencial" />
 					<f:selectItem itemValue="Celular" itemLabel="Celular" />

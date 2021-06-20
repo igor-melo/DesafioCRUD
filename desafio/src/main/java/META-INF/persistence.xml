@@ -9,7 +9,7 @@
 
 		<class>br.com.pitang.desafio.entities.Usuario</class>
 		<class>br.com.pitang.desafio.entities.Telefone</class>
-
+		<class>br.com.pitang.desafio.entities.Login</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="org.h2.Driver" />
@@ -29,6 +29,11 @@
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.temp.use_jdbc_metadata_defaults"
 				value="false" />
+
+
+
+
+
 		</properties>
 	</persistence-unit>
 </persistence>

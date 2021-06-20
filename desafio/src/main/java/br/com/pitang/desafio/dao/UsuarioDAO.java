@@ -7,9 +7,10 @@ import java.util.List;
 
 import br.com.pitang.desafio.entities.Usuario;
 import br.com.pitang.desafio.exception.SystemError;
+import br.com.pitang.desafio.interfaces.CrudDAO;
 import br.com.pitang.desafio.utility.ConnectionFactory;
 
-public class UsuarioDAOJPA implements CrudDAO<Usuario> {
+public class UsuarioDAO implements CrudDAO<Usuario> {
 
 	@Override
 	public void salvar(Usuario usuario) {

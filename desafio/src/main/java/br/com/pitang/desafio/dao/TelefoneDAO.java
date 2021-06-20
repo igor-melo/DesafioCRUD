@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import br.com.pitang.desafio.entities.Telefone;
+import br.com.pitang.desafio.interfaces.CrudDAO;
 
 public class TelefoneDAO implements CrudDAO<Telefone>{
 

@@ -5,8 +5,8 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import br.com.pitang.desafio.dao.CrudDAO;
 import br.com.pitang.desafio.exception.SystemError;
+import br.com.pitang.desafio.interfaces.CrudDAO;
 
 public abstract class DAOBean<E, D extends CrudDAO> {
 
@@ -40,6 +40,7 @@ public abstract class DAOBean<E, D extends CrudDAO> {
 		this.entidade = entidade;
 		mudarParaEditar();
 	}
+
 	public void deletar(E entidade) {
 		try {
 			getDao().deletar(entidade);
@@ -114,7 +115,6 @@ public abstract class DAOBean<E, D extends CrudDAO> {
 	public void mudarParaBuscar() {
 		estadoTela = "buscar";
 	}
-	
 	
 	
 }

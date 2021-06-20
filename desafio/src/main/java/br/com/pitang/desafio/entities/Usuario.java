@@ -23,7 +23,7 @@ public class Usuario {
 	private Long id;
 	
 	@NotBlank(message = "Nome não pode ser vazio ou nulo")
-	@Size(min = 2, max = 150)
+	@Size(min = 2, max = 150, message = "Nome deve ter o tamanho entre 2 e 150")
 	@Column(nullable = false)
 	private String nome;
 	
@@ -33,7 +33,7 @@ public class Usuario {
 	private String email;
 	
 	@NotBlank(message = "Senha não pode ser vazia ou nula")
-	@Size(min = 6, max = 8)
+	@Size(min = 6, max = 8, message = "Senha deve ter o tamanho entre 6 e 8 ")
 	private String senha;
 	
 	@OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER , cascade = {CascadeType.ALL, CascadeType.PERSIST} , orphanRemoval = true)

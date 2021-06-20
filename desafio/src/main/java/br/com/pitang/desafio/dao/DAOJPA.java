@@ -37,11 +37,16 @@ public class DAOJPA<E> {
 		em = emf.createEntityManager();
 	}
 
+	public EntityManager getEm() {
+		return em;
+	}
+
 	public DAOJPA<E> abrirT() {
 		em.getTransaction().begin();
 		return this;
 	}
-
+	
+	
 	public DAOJPA<E> fecharT() {
 		em.getTransaction().commit();
 		return this;
